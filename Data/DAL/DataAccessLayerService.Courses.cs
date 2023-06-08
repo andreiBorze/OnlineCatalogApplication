@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.DAL
 {
-    public partial class DataAccessLayerService : IDataAccessLayerService
+    internal partial class DataAccessLayerService : IDataAccessLayerService
     {
         #region AddCourse
         public Course AddCourse(string nameCourse)

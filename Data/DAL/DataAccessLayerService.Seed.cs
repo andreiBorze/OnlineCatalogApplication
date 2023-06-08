@@ -2,7 +2,7 @@
 
 namespace Data.DAL
 {
-    public partial class DataAccessLayerService : IDataAccessLayerService
+    internal partial class DataAccessLayerService : IDataAccessLayerService
     {
         #region seed
         public void Seed()

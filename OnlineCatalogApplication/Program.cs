@@ -1,4 +1,5 @@
 using Data.DAL;
+using Data.Extensions;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
@@ -11,8 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connString = builder.Configuration.GetConnectionString("SqlDbConnectionString");
 
 // Add services to the container.
-builder.Services.AddDbContext<StudentsDbContext>(options => options.UseSqlServer(connString));
-builder.Services.AddScoped<IDataAccessLayerService, DataAccessLayerService>();
+builder.Services.AddDataAccessLayer(connString);
 
 builder.Services.AddControllers(options =>
 {
