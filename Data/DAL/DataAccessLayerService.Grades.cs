@@ -6,7 +6,7 @@ namespace Data.DAL
 {
     internal partial class DataAccessLayerService : IDataAccessLayerService
     {
-        #region AwardGrade
+ 
         public Grade AwardGrade(int value, int studentId, int courseId)
         {
             if(!ctx.Students.Any(x => x.Id == studentId))
@@ -27,9 +27,8 @@ namespace Data.DAL
 
             return grade;
         }
-        #endregion
+       
 
-        #region GetAllGradeForStudent
        /* public Grade GetAllGradeForStudent(int studentId)
         {
             if (!ctx.Students.Any(x => x.Id == studentId))
@@ -46,6 +45,6 @@ namespace Data.DAL
 
             return grade;
         }*/
-        #endregion
+       
     }
 }

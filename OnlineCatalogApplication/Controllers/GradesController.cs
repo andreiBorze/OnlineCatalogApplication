@@ -3,6 +3,7 @@ using Data.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineCatalogApplication.Dtos;
+using OnlineCatalogApplication.Utils;
 
 namespace OnlineCatalogApplication.Controllers
 {
@@ -10,15 +11,12 @@ namespace OnlineCatalogApplication.Controllers
     [ApiController]
     public class GradesController : ControllerBase
     {
-        #region Initialization
         private readonly IDataAccessLayerService dal;
         public GradesController(IDataAccessLayerService dataAccessLayer)
         {
             this.dal = dataAccessLayer;
         }
-        #endregion
 
-        #region AwardGrade
         /// <summary>
         /// Award Grade 
         /// </summary>
@@ -28,19 +26,7 @@ namespace OnlineCatalogApplication.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GradeToCreateDto))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(string))]
-
-        public IActionResult AwardGrade([FromBody] GradeToCreateDto grade)
-        {
-            try
-            {
-                var addedGrade = dal.AwardGrade(grade.Value, grade.StudentId, grade.CourseId);
-                return Created("Success", null);
-            }
-            catch (InvalidIdException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        #endregion
+        public GradeToCreateDto AwardGrade([FromBody] GradeToCreateDto grade) => dal.AwardGrade(grade.Value, grade.StudentId, grade.CourseId).ToDto();
+   
     }
 }

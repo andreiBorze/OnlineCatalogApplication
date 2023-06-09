@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace OnlineCatalogApplication.Dtos
-{
+{ 
+    /// <summary>
+    /// 
+    /// </summary>
     public class GradeToCreateDto
     {
         /// <summary>

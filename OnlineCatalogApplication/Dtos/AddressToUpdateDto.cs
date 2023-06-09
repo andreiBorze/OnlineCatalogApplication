@@ -2,6 +2,9 @@
 
 namespace OnlineCatalogApplication.Dtos
 {
+    /// <summary>
+    /// Address Model that will be used for update
+    /// </summary>
     public class AddressToUpdateDto
     {
         /// <summary>

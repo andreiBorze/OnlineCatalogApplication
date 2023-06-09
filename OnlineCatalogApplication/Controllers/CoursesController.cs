@@ -11,34 +11,25 @@ namespace OnlineCatalogApplication.Controllers
     [ApiController]
     public class CoursesController : ControllerBase
     {
-        #region Initialization
         private readonly IDataAccessLayerService dal;
         public CoursesController(IDataAccessLayerService dataAccessLayer)
         {
             this.dal = dataAccessLayer;
         }
-        #endregion
 
-        #region AddCourse
-
+        /// <summary>
+        /// Add a course
+        /// </summary>
+        /// <param name="courseToCreate"></param>
+        /// <returns>The new course</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(string))]
-        public IActionResult AddCourse([FromBody] CourseToCreateDto courseToCreate)
-        {
-            try
-            {
-                var addedCourse = dal.AddCourse(courseToCreate.Name);
-                return Created("Success", addedCourse);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-        #endregion
+        public CourseToCreateDto AddCourse([FromBody] CourseToCreateDto courseToCreate)=>
+            dal.AddCourse(courseToCreate.Name).ToDto();
 
-        #region GetAllCourses
+
+
         /// <summary>
         /// GetAllCourses
         /// </summary>
@@ -47,18 +38,8 @@ namespace OnlineCatalogApplication.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
-        public IActionResult GetAllCourses()
-        {
-            try
-            {
-                IEnumerable<CourseToCreateDto> allCourse = dal.GetAllCourses().Select(s => s.ToDto()).ToList();
-                return Ok(allCourse);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }   
-        }
-        #endregion
+        public IEnumerable<CourseToCreateDto> GetAllCourses()=>
+           dal.GetAllCourses().Select(s => s.ToDto()).ToList();
+
     }
 }

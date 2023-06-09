@@ -4,7 +4,6 @@ namespace Data.DAL
 {
     internal partial class DataAccessLayerService : IDataAccessLayerService
     {
-        #region seed
         public void Seed()
         {
             ctx.Add(new Student
@@ -131,6 +130,5 @@ namespace Data.DAL
 
             ctx.SaveChanges();
         }
-        #endregion
     }
 }

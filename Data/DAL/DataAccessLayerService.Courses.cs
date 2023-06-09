@@ -6,7 +6,6 @@ namespace Data.DAL
 {
     internal partial class DataAccessLayerService : IDataAccessLayerService
     {
-        #region AddCourse
         public Course AddCourse(string nameCourse)
         {
             var course = new Course { Name = nameCourse };
@@ -15,11 +14,8 @@ namespace Data.DAL
             ctx.SaveChanges();  
             return course;
         }
-        #endregion
 
-        #region GetAllCourses
         public IEnumerable<Course> GetAllCourses() => ctx.Courses;
-        #endregion
 
     }
 }

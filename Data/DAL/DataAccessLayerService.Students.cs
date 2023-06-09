@@ -6,19 +6,15 @@ namespace Data.DAL
 {
     internal partial class DataAccessLayerService : IDataAccessLayerService
     {
-        #region Initialization
         private readonly StudentsDbContext ctx;
         public DataAccessLayerService(StudentsDbContext ctx)
         {
             this.ctx = ctx;
         }
-        #endregion
-
-        #region GetAllStudents
+        
         public IEnumerable<Student> GetAllStudents() => ctx.Students.ToList();
-        #endregion
+        
 
-        #region GetStudentById
         public Student GetStudentById(int id)
         {
             var student = ctx.Students.FirstOrDefault(x => x.Id == id);
@@ -28,9 +24,8 @@ namespace Data.DAL
             }
             return student;
         }
-        #endregion
+        
 
-        #region CreateStudent
         public Student CreateStudent(Student student)
         {
             if (ctx.Students.Any(x => x.Id == student.Id))
@@ -43,9 +38,8 @@ namespace Data.DAL
 
             return student;
         }
-        #endregion
+        
 
-        #region UpdateStudent
         public Student UpdateStudent(Student studentToUpdate)
         {
             var student = ctx.Students.FirstOrDefault(x => x.Id == studentToUpdate.Id);
@@ -62,9 +56,8 @@ namespace Data.DAL
 
             return student;
         }
-        #endregion
+        
 
-        #region DeleteStudent
         public void DeleteStudent(int studentId)
         {
             var student = ctx.Students.FirstOrDefault(x => x.Id == studentId);
@@ -77,9 +70,8 @@ namespace Data.DAL
             ctx.Students.Remove(student);
             ctx.SaveChanges();
         }
-        #endregion
+        
 
-        #region UpdateOrCreateStudentAddress
         public bool UpdateOrCreateStudentAddress(int studentId, Address newAddress)
         {
             var student = ctx.Students.Include(s => s.Address).FirstOrDefault(s => s.Id == studentId);
@@ -102,6 +94,6 @@ namespace Data.DAL
             ctx.SaveChanges();
             return created;    
         }
-        #endregion
+        
     }
 }

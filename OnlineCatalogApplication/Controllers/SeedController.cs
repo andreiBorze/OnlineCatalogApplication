@@ -8,14 +8,11 @@ namespace OnlineCatalogApplication.Controllers
     [ApiController]
     public class SeedController : ControllerBase
     {
-        #region Initialization
         private readonly IDataAccessLayerService dal;
         public SeedController(IDataAccessLayerService dataAccessLayer)
         {
             this.dal = dataAccessLayer;
         }
-        #endregion
-   
 
         /// <summary>
         /// Initialize the database
