@@ -19,18 +19,17 @@ namespace OnlineCatalogApplication.Utils
             };
         }
 
-
-    public static Student ToEntity(this StudentToCreateDto student)
-    {
-        if (student == null)
+        public static Student ToEntity(this StudentToCreateDto student)
         {
-            return null;
+            if (student == null)
+            {
+                return null;
+            }
+            return new Student { 
+                Name = student.Name, 
+                Age = student.Age 
+            };
         }
-        return new Student { 
-            Name = student.Name, 
-            Age = student.Age 
-        };
-    }
 
         public static Student ToEntity(this StudentToUpdateDto student)
         {
@@ -59,5 +58,36 @@ namespace OnlineCatalogApplication.Utils
                 Street = addressToUpdate.Street
             };
         }
+
+        public static StudentOrderByGradesDto ToDtos(this KeyValuePair<int, double> pair)
+        {
+
+            var dto = new StudentOrderByGradesDto
+            {
+                StudentId = pair.Key,
+                AverageGrades = pair.Value
+            };
+
+            return dto;
+        }
+
+        public static StudentWithAddressDto ToDtos(this Student student)
+        {
+            if (student == null)
+            {
+                return null;
+            }
+
+            return new StudentWithAddressDto
+            {
+                Id = student.Id,
+                Name = student.Name,
+                Age = student.Age,
+                City = student.Address.City,
+                Street = student.Address.Street,
+                Number = student.Address.Number
+            };
+        }
+
     }
 }

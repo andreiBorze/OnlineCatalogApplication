@@ -3,27 +3,27 @@
 namespace OnlineCatalogApplication.Dtos
 {
     /// <summary>
-    /// Address Model that will be used for update
+    /// Address model used for updating an existing address.
     /// </summary>
     public class AddressToUpdateDto
     {
         /// <summary>
-        /// Street Name
+        /// Gets or sets the street name.
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "The street can't be empty!")]
         public string Street { get; set; }
 
         /// <summary>
-        /// City Name
+        /// Gets or sets the city name.
         /// </summary>
         [Required(AllowEmptyStrings = false, ErrorMessage = "The city can't be empty!")]
         public string City { get; set; }
 
         /// <summary>
-        /// Number
+        /// Gets or sets the street number.
         /// </summary>
         [Range(1, int.MaxValue)]
         public int Number { get; set; }
-
     }
+
 }

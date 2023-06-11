@@ -9,16 +9,17 @@ namespace OnlineCatalogApplication.Controllers
     public class SeedController : ControllerBase
     {
         private readonly IDataAccessLayerService dal;
+
         public SeedController(IDataAccessLayerService dataAccessLayer)
         {
             this.dal = dataAccessLayer;
         }
 
         /// <summary>
-        /// Initialize the database
+        /// Initialize the database by seeding data.
         /// </summary>
         [HttpPost()]
-        public void Seed() => 
-            dal.Seed(); 
+        public void Seed() => dal.Seed();
     }
+
 }

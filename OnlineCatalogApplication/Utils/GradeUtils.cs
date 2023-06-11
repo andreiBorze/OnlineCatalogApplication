@@ -13,10 +13,24 @@ namespace OnlineCatalogApplication.Utils
             }
             return new GradeToCreateDto
             {
-                 CourseId = grade.Id,
+                 CourseId = (int)grade.CourseId,
                  StudentId = grade.StudentId,
                  Value = grade.Value,
             };
         }
+
+
+        public static GradeAverageDto ToDto(this KeyValuePair<int, double> pair)
+        {
+
+            var dto = new GradeAverageDto
+            {
+                CourseId = pair.Key,
+                AverageGrade = pair.Value
+            };
+
+            return dto;
+        }
+
     }
 }
